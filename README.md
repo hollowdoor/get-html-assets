@@ -5,10 +5,17 @@ Install
 -------
 npm install get-html-assets
 
-Usage
+About
 -----
 
-get-html-assets in an instance of EventEmitter.
+get-html-assets in an EventEmitter.
+
+This module gets information for scripts, styles, and images.
+
+It optional gets the contents of the files, or creates read streams for them.
+
+Usage
+-----
 
 When the read option is set there will be a `content` property with the file text set on the file data object of those file types.
 

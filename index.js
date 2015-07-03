@@ -6,6 +6,12 @@ var cwd = process.cwd(),
     util = require('util'),
     mime = require('mime');
 
+/*
+git remote add origin https://github.com/hollowdoor/get-html-assets.git
+git push -u origin master
+npm publish
+*/
+
 module.exports = GetHTMLAssets;
 
 function GetHTMLAssets(htmlfile, options, complete){
