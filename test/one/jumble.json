@@ -1,0 +1,14 @@
+{
+    "type": "html",
+    "name": "test",
+    "main": "index.html",
+    "es6": true,
+    "icons": {
+        "512": "/img/icon-512.png",
+        "128": "/img/icon-128.png"
+    },
+    "files": ["ignored.js"],
+    "external": ["./lib/ex.js"],
+    "directories": ["lib"],
+    "minify": false
+}
