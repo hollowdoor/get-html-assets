@@ -10,14 +10,22 @@ About
 
 get-html-assets in an EventEmitter.
 
-This module gets information for scripts, styles, and images.
+This module gets the information for assets from html file markup external links.
+
+### Types of files it looks for
+
+* scripts
+* styles
+* images
 
 It optional gets the contents of the files, or creates read streams for them.
+
+For now get-html-assets will not read images, but will still create streams for them.
 
 Usage
 -----
 
-When the read option is set there will be a `content` property with the file text set on the file data object of those file types.
+When the read option is set there will be a `content` property with the file text set on the file data object of those file types. :)
 
 ```javascript
 var GetAssets = require('get-html-assets');
