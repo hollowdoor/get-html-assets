@@ -18,8 +18,6 @@ function GetHTMLAssets(htmlfile, options, complete){
 
     events.EventEmitter.call(this);
 
-    var typelist = ['scripts', 'styles', 'images'], index, x;
-
     htmlfile = path.resolve(cwd, htmlfile);
 
     if(typeof options === 'function'){
@@ -31,13 +29,6 @@ function GetHTMLAssets(htmlfile, options, complete){
 
     if(typeof complete === 'function'){
         self.on('done', complete);
-    }
-
-    index = typelist.length;
-
-    while(--index){
-        x = typelist[index];
-        options[x] = options[x] !== undefined ? options[x] : true;
     }
 
     if(Object.prototype.toString.call(options.read) !== '[object Array]'){
@@ -66,7 +57,7 @@ function GetHTMLAssets(htmlfile, options, complete){
         types = [
             {
                 //javascript
-                use: options.scripts,
+                use: true,//options.scripts,
                 type: 'script',
                 select: 'script',
                 fileAttribute: 'src',
@@ -79,7 +70,7 @@ function GetHTMLAssets(htmlfile, options, complete){
             },
             {
                 //css
-                use: options.styles,
+                use: true,//options.styles,
                 type: 'style',
                 select: 'link',
                 fileAttribute: 'href',
@@ -92,7 +83,7 @@ function GetHTMLAssets(htmlfile, options, complete){
             },
             {
                 //images
-                use: options.images,
+                use: true,//options.images,
                 type: 'image',
                 select: 'img',
                 fileAttribute: 'src',
@@ -199,34 +190,28 @@ function GetHTMLAssets(htmlfile, options, complete){
 
         if(type.read){
             if(fs.existsSync(a.path)){
-                readLink(type, a, stream);
+                readLink(type, a);
             }
         }else{
             setImmediate(function(){
-                finalLink(type, a, stream);
+                finalLink(type, a);
             });
         }
     }
 
     function readLink(type, a, stream){
-        var str = '';
 
-        if(stream){
+        fs.readFile(a.path, 'utf8', function(err, str){
+            if(err){
 
-            stream.on('data', function(chunk){
-                str += chunk;
-            });
-
-            stream.on('end', function(){
-                a.content = str;
-                finalLink(type, a);
-            });
-
-            stream.on('error', function(err){
                 self.emit('error',
                     new Error('' + err.message));
-            });
-        }
+                return;
+            }
+
+            a.content = str;
+            finalLink(type, a);
+        });
     }
 
     function finalLink(type, a){
