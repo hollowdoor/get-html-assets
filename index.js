@@ -122,6 +122,8 @@ function GetHTMLAssets(htmlfile, options, complete){
                 self.emit('error',
                 new Error('' + err.message));
             }
+
+            self.emit('html', str);
             readLinks(str);
         });
     }
@@ -129,7 +131,7 @@ function GetHTMLAssets(htmlfile, options, complete){
     function readLinks(html){
         var $elements, $element, attr, type,
             $ = cheerio.load(html);
-        
+
 
         for(var t=0,l=types.length; t<l; t++){
 
