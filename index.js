@@ -129,6 +129,7 @@ function GetHTMLAssets(htmlfile, options, complete){
     function readLinks(html){
         var $elements, $element, attr, type,
             $ = cheerio.load(html);
+        
 
         for(var t=0,l=types.length; t<l; t++){
 
@@ -167,6 +168,7 @@ function GetHTMLAssets(htmlfile, options, complete){
     }
 
     function PrepareLink(type, $element, a){
+
         a.name = $element.attr(type.fileAttribute);
         a.path = path.resolve(cwd, a.name);
         a.cwd = cwd;
@@ -199,7 +201,7 @@ function GetHTMLAssets(htmlfile, options, complete){
         }
     }
 
-    function readLink(type, a, stream){
+    function readLink(type, a){
 
         fs.readFile(a.path, 'utf8', function(err, str){
             if(err){
