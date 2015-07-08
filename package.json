@@ -1,13 +1,12 @@
 {
   "name": "get-html-assets",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Find links and open them in html",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "dependencies":{
-      "mime": "1.*",
       "cheerio": "0.*",
       "graceful-fs": "3.*",
       "mime": "1.3.*"
